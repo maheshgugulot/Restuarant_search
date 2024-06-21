@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dish Search</title>
+</head>
+<body>
+    <h1>Search for a Dish</h1>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Results</h2>
+    <ul>
+        {% for restaurant in results %}
+            <li>{{ restaurant.name }} ({{ restaurant.location }})</li>
+            <ul>
+                {% for dish, price in restaurant.items.items %}
+                    {% if query in dish %}
+                        <li>{{ dish }} - {{ price }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+</body>
+</html>
